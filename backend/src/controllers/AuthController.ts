@@ -29,4 +29,21 @@ export class AuthController {
       return res.status(500).json({ error: "Hubo un error" })
     }
   }
+
+  static confirmAccount = async (req: Request, res: Response) => {
+    const { token } = req.body
+    const user = await User.findOne({ where: { token } })
+
+    if (!user) {
+      const error = new Error("Token no valido")
+      return res.status(401).json({ error: error.message })
+    }
+
+    // activar cuenta del usuario
+    user.confirmed = true
+    user.token = null
+    await user.save()
+
+    return res.json("Cuenta confirmada correctamente")
+  }
 }
