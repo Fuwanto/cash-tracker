@@ -2,6 +2,7 @@ import { Router } from "express"
 import { BudgetController } from "../controllers/BudgetController"
 import { handleInputErrors } from "../middleware/validation"
 import {
+  hasAccess,
   validateBudgetExists,
   validateBudgetId,
   validateBudgetInput,
@@ -12,12 +13,16 @@ import {
   validateExpenseId,
   validateExpenseInput,
 } from "../middleware/expense"
+import { authenticate } from "../middleware/auth"
 
 const router = Router()
 
-// Si {param} participa, aplicar {middleware de validación}
+router.use(authenticate) // genera -> req.user
+
+// Si {param} participa, aplicar {middleware de validación} (El orden es importante)
 router.param("budgetId", validateBudgetId)
-router.param("budgetId", validateBudgetExists)
+router.param("budgetId", validateBudgetExists) // genera -> req.budget
+router.param("budgetId", hasAccess) // necesita de req.user y req.budget
 router.param("expenseId", validateExpenseId)
 router.param("expenseId", validateExpenseExists)
 
@@ -41,7 +46,7 @@ router.put(
   BudgetController.updateById
 )
 
-router.delete("/:budgetId", BudgetController.deletetById)
+router.delete("/:budgetId", BudgetController.deleteById)
 
 // routes for expenses:
 
