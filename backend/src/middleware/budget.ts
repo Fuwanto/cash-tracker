@@ -19,9 +19,11 @@ export const validateBudgetId = async (
 ) => {
   await param("budgetId")
     .isInt()
-    .withMessage("ID no valido")
+    .withMessage("ID no válido")
+    .bail() //  bail detiene el chequeo de errores al primer error que encuentra, de modo que solo obtengo un solo mensaje de error
     .custom((value) => value > 0)
-    .withMessage("ID no valido")
+    .withMessage("ID no válido")
+    .bail()
     .run(req)
   let errors = validationResult(req)
   if (!errors.isEmpty()) {
