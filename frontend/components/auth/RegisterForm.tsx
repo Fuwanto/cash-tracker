@@ -10,7 +10,7 @@ export default function RegisterForm() {
   const [state, dispatch] = useActionState(register, {
     errors: [],
     success: "",
-  }) // useActionState == useFormState (para versiones anteriores de next)
+  }) // useActionState == useFormState (para versiones anteriores)
 
   useEffect(() => {
     if (state.success) {
