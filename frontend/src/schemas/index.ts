@@ -1,5 +1,13 @@
 import { z } from "zod"
 
+export const UserSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  email: z.string().email(),
+})
+
+export type User = z.infer<typeof UserSchema>
+
 export const RegisterSchema = z
   .object({
     email: z
@@ -63,10 +71,15 @@ export const ErrorResponseSchema = z.object({
   error: z.string(),
 })
 
-export const UserSchema = z.object({
+export const BudgetAPIResponseSchema = z.object({
   id: z.number(),
   name: z.string(),
-  email: z.string().email(),
+  amount: z.string(),
+  userId: z.number(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 })
 
-export type User = z.infer<typeof UserSchema>
+export const BudgetsAPIResponseSchema = z.array(BudgetAPIResponseSchema)
+
+export type Budget = z.infer<typeof BudgetAPIResponseSchema>
