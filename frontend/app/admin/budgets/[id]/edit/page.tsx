@@ -1,26 +1,18 @@
-import { notFound } from "next/navigation"
 import Link from "next/link"
-import getToken from "@/src/auth/token"
-import { BudgetAPIResponseSchema } from "@/src/schemas"
+import { Metadata } from "next"
+import EditBudgetForm from "@/components/budgets/EditBudgetForm"
+import { getBudgetById } from "@/src/services/budget"
 
-const getBudgetById = async (budgetId: string) => {
-  const url = `${process.env.API_URL}/budgets/${budgetId}`
-  const token = await getToken()
-
-  const req = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-
-  const json = await req.json()
-
-  if (!req.ok) {
-    notFound()
+export async function generateMetaData({
+  params,
+}: {
+  params: { id: string }
+}): Promise<Metadata> {
+  const budget = await getBudgetById(params.id)
+  return {
+    title: `CashTracker - ${budget.name}`,
+    description: `CashTracker - ${budget.name}`,
   }
-
-  const budget = BudgetAPIResponseSchema.parse(json)
-  return budget
 }
 
 export default async function EditBudgetPage({
@@ -50,7 +42,9 @@ export default async function EditBudgetPage({
           Volver
         </Link>
       </div>
-      <div className="p-10 mt-10  shadow-lg border "></div>
+      <div className="p-10 mt-10  shadow-lg border ">
+        <EditBudgetForm budget={budget} />
+      </div>
     </>
   )
 }
