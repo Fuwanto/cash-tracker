@@ -1,5 +1,6 @@
 "use server"
 
+import { revalidateTag } from "next/cache"
 import {
   DraftBudgetSchema,
   ErrorResponseSchema,
@@ -52,6 +53,7 @@ export async function createBudget(
     }
   }
 
+  revalidateTag("/all-budgets")
   const success = SuccessSchema.parse(json)
 
   return {

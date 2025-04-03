@@ -20,7 +20,7 @@ export default async function EditBudgetPage({
 }: {
   params: { id: string }
 }) {
-  const { id } = params
+  const { id } = await params
   const budget = await getBudgetById(id)
 
   return (
