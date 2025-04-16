@@ -9,6 +9,7 @@ import {
 } from "../middleware/budget"
 import { ExpensesController } from "../controllers/ExpenseController"
 import {
+  belongToBudget,
   validateExpenseExists,
   validateExpenseId,
   validateExpenseInput,
@@ -25,6 +26,7 @@ router.param("budgetId", validateBudgetExists) // genera -> req.budget
 router.param("budgetId", hasAccess) // necesita de req.user y req.budget
 router.param("expenseId", validateExpenseId)
 router.param("expenseId", validateExpenseExists)
+router.param("expenseId", belongToBudget)
 
 // rutas
 
