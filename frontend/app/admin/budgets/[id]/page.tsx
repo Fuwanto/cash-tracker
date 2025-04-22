@@ -4,6 +4,8 @@ import AddExpenseButton from "@/components/expenses/AddExpenseButton"
 import ModalContainer from "@/components/ui/ModalContainer"
 import { formatCurrency, formatDate } from "@/src/utils"
 import ExpenseMenu from "@/components/expenses/ExpenseMenu"
+import Amount from "@/components/ui/Amount"
+import ProgressBar from "@/components/budgets/ProgressBar"
 
 export async function generateMetaData({
   params,
@@ -24,6 +26,15 @@ export default async function BudgetDetailPage({
 }) {
   const budget = await getBudgetById(params.id)
 
+  const totalSpent = budget.expenses.reduce(
+    (total, expense) => +expense.amount + total,
+    0
+  )
+
+  const totalAvailable = +budget.amount - totalSpent
+
+  const percentage = +((totalSpent / +budget.amount) * 100).toFixed(2)
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -38,6 +49,14 @@ export default async function BudgetDetailPage({
 
       {budget.expenses.length ? (
         <>
+          <div className="grid grid-cols-1 md:grids-cols-2 mt-10">
+            <ProgressBar percentage={percentage} />
+            <div className="flex flex-col justify-center items-center md:items-start gap-5">
+              <Amount label="Presupuesto" amount={+budget.amount} />
+              <Amount label="Disponible" amount={totalAvailable} />
+              <Amount label="Gastado" amount={totalSpent} />
+            </div>
+          </div>
           <h1>Gastos en este presupuesto:</h1>
           <ul
             role="list"
