@@ -1,6 +1,7 @@
 import { verifySession } from "@/src/auth/dal"
 import getToken from "@/src/auth/token"
 
+//TODO ARREGLAR CONEXION CON LA API
 export async function GET(
   request: Request,
   { params }: { params: { budgetId: string; expenseId: string } }

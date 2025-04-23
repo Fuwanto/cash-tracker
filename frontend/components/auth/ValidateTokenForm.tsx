@@ -11,6 +11,7 @@ import {
 import { PinInput, PinInputField } from "@chakra-ui/pin-input"
 import { validateToken } from "@/actions/validate-token-action"
 import { toast } from "react-toastify"
+import ErrorMessage from "../ui/ErrorMessage"
 
 type ValidateTokenFormProps = {
   setIsValidToken: Dispatch<SetStateAction<boolean>>
@@ -39,9 +40,6 @@ export default function ValidateTokenForm({
   }, [isComplete])
 
   useEffect(() => {
-    if (state.errors) {
-      state.errors.forEach((error) => toast.error(error))
-    }
     if (state.success) {
       toast.success(state.success)
       setIsValidToken(true)
@@ -58,19 +56,28 @@ export default function ValidateTokenForm({
   }
 
   return (
-    <div className="flex justify-center gap-5 my-10">
-      <PinInput
-        value={token}
-        onChange={handleChange}
-        onComplete={handleComplete}
-      >
-        <PinInputField className="h-10 w-10 text-center border border-gray-300 shadow rounded-lg placeholder-white" />
-        <PinInputField className="h-10 w-10 text-center border border-gray-300 shadow rounded-lg placeholder-white" />
-        <PinInputField className="h-10 w-10 text-center border border-gray-300 shadow rounded-lg placeholder-white" />
-        <PinInputField className="h-10 w-10 text-center border border-gray-300 shadow rounded-lg placeholder-white" />
-        <PinInputField className="h-10 w-10 text-center border border-gray-300 shadow rounded-lg placeholder-white" />
-        <PinInputField className="h-10 w-10 text-center border border-gray-300 shadow rounded-lg placeholder-white" />
-      </PinInput>
+    <div className="flex flex-col text-center">
+      <div className="space-y-6 flex justify-center">
+        <PinInput
+          value={token}
+          onChange={handleChange}
+          onComplete={handleComplete}
+        >
+          {[...Array(6)].map((_, i) => (
+            <PinInputField
+              key={i}
+              className="h-12 w-12 bg-surface/20 border-2 border-accent/30 
+                     text-center font-mono text-xl focus:border-primary
+                     focus:shadow-neon outline-none rounded-sm blink-caret
+                     placeholder:text-gray-500"
+              placeholder="○"
+            />
+          ))}
+        </PinInput>
+      </div>
+      {state.errors.map((error, index) => (
+        <ErrorMessage key={index}>{error}</ErrorMessage>
+      ))}
     </div>
   )
 }

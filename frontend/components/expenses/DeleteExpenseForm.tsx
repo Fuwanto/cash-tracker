@@ -1,5 +1,4 @@
 import { useParams, useSearchParams } from "next/navigation"
-import { DialogTitle } from "@headlessui/react"
 import { useActionState, useEffect } from "react"
 import { toast } from "react-toastify"
 import deleteExpense from "@/actions/delete-expense-action"
@@ -37,37 +36,36 @@ export default function DeleteExpenseForm({ closeModal }: DeleteExpenseForm) {
   }, [])
 
   return (
-    <>
-      <DialogTitle as="h3" className="font-black text-4xl text-purple-950 my-5">
-        Eliminar Gasto
-      </DialogTitle>
+    <div className="space-y-8">
+      <div className="text-center space-y-4 border-b border-accent/30 pb-6">
+        <h3 className="text-3xl font-mono neon-text text-glitch tracking-widest">
+          ! ELIMINAR_GASTO !
+        </h3>
+        <p className="text-secondary/80 font-mono">
+          Acción permanente |{" "}
+          <span className="text-glitch">No recuperable</span>
+        </p>
+      </div>
 
       {state.errors.map((error, index) => (
         <ErrorMessage key={index}>{error}</ErrorMessage>
       ))}
 
-      <p className="text-xl font-bold">
-        Confirma para eliminar, {""}
-        <span className="text-amber-500">el gasto</span>
-      </p>
-      <p className="text-gray-600 text-sm">
-        (Un gasto eliminado no se puede recuperar)
-      </p>
-      <div className="grid grid-cols-2 gap-5 mt-10">
+      <div className="grid grid-cols-2 gap-4">
         <button
-          className="bg-amber-500 w-full p-3 text-white uppercase font-bold hover:bg-amber-600 cursor-pointer transition-colors"
+          className="retro-button text-secondary hover:text-primary"
           onClick={closeModal}
         >
-          Cancelar
+          [ ABORTAR ]
         </button>
         <button
           type="button"
-          className="bg-red-500 w-full p-3 text-white uppercase font-bold hover:bg-red-600 cursor-pointer transition-colors"
+          className="retro-button bg-glitch/80 hover:bg-glitch text-white"
           onClick={dispatch}
         >
-          Eliminar
+          [ CONFIRMAR_ELIMINACIÓN ]
         </button>
       </div>
-    </>
+    </div>
   )
 }

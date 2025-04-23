@@ -1,4 +1,3 @@
-import { DialogTitle } from "@headlessui/react"
 import { useParams } from "next/navigation"
 import { useActionState, useEffect } from "react"
 import { toast } from "react-toastify"
@@ -26,29 +25,47 @@ export default function AddExpenseForm({
   }, [state])
 
   return (
-    <>
-      <DialogTitle as="h3" className="font-black text-4xl text-purple-950 my-5">
-        Agregar Gasto
-      </DialogTitle>
-      <p className="text-xl font-bold">
-        Llena el formulario y crea un {""}
-        <span className="text-amber-500">gasto</span>
-      </p>
+    <div className="space-y-8">
+      {/* Encabezado */}
+      <div className="text-center space-y-4 border-b border-accent/30 pb-6">
+        <h3 className="text-3xl font-mono neon-text tracking-widest">
+          [ NUEVO_GASTO ]
+        </h3>
+        <p className="text-secondary/80 font-mono">
+          Protocolo de registro | <span className="text-accent">v2.4.1</span>
+        </p>
+      </div>
+
+      {/* Mensajes de error */}
       {state.errors.map((error, index) => (
         <ErrorMessage key={index}>{error}</ErrorMessage>
-      ))}{" "}
+      ))}
+
+      {/* Formulario */}
       <form
-        className="bg-gray-100 shadow-lg rounded-lg p-10 mt-10 border"
+        className="cyber-box-enhanced p-8 space-y-6"
         noValidate
         action={dispatch}
       >
         <ExpenseForm />
-        <input
-          type="submit"
-          className="bg-amber-500 w-full p-3 text-white uppercase font-bold hover:bg-amber-600 cursor-pointer transition-colors"
-          value="Registrar Gasto"
-        />
+
+        {/* Botones de acción */}
+        <div className="grid grid-cols-2 gap-4">
+          <button
+            type="submit"
+            className="retro-button text-accent hover:text-primary"
+          >
+            REGISTRAR_GASTO
+          </button>
+          <button
+            type="button"
+            className="retro-button text-secondary hover:text-primary"
+            onClick={closeModal}
+          >
+            CANCELAR_OPERACIÓN
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   )
 }

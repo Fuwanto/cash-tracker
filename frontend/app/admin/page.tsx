@@ -35,63 +35,71 @@ export default async function AdminPage() {
   const budgets = await getUserBudgets()
 
   return (
-    <>
-      <div className="flex flex-col-reverse md:flex-row md:justify-between items-center">
-        <div className="w-full md:w-auto">
-          <h1 className="font-black text-4xl text-purple-950 my-5">
-            Mis Presupuestos
+    <div className="space-y-8">
+      {/* Encabezado */}
+      <div className="flex flex-col-reverse md:flex-row md:justify-between items-center gap-6">
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold neon-text">
+            <span className="text-primary">MIS_PRESUPUESTOS</span>
           </h1>
-          <p className="text-xl font-bold">
-            Maneja y administra tus {""}
-            <span className="text-amber-500">presupuestos</span>
+          <p className="font-mono text-secondary/80 text-lg">
+            Sistema de gestión financiera |
+            <span className="text-accent ml-2">v2.2.5</span>
           </p>
         </div>
         <Link
-          href={"/admin/budgets/new"}
-          className="bg-amber-500 p-2 rounded-lg text-white font-bold w-full md:w-auto text-center"
+          href="/admin/budgets/new"
+          className="retro-button px-8 py-3 text-accent hover:text-primary"
         >
-          Crear Presupuesto
+          + CREAR_PRESUPUESTO
         </Link>
       </div>
 
+      {/* Listado de presupuestos */}
       {budgets.length ? (
-        <>
-          <ul
-            role="list"
-            className="divide-y divide-gray-300 border shadow-lg mt-10 "
-          >
+        <div className="cyber-box-enhanced p-6 space-y-6">
+          <ul role="list" className="space-y-4">
             {budgets.map((budget) => (
-              <li key={budget.id} className="flex justify-between gap-x-6 p-5 ">
-                <div className="flex min-w-0 gap-x-4">
-                  <div className="min-w-0 flex-auto space-y-2">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">
-                      <Link href={`/admin/budgets/${budget.id}`}>
-                        {budget.name}
-                      </Link>
-                    </p>
-                    <p className="text-xl font-bold text-amber-500">
+              <li
+                key={budget.id}
+                className="group cyber-box-inner p-4 hover:bg-surface/50 transition-glow"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="space-y-2 flex-1">
+                    <Link
+                      href={`/admin/budgets/${budget.id}`}
+                      className="font-mono text-lg neon-text hover:text-accent"
+                    >
+                      {budget.name}
+                    </Link>
+                    <p className="text-2xl font-bold text-primary">
                       {formatCurrency(+budget.amount)}
                     </p>
-                    <p className="text-gray-500  text-sm">
-                      Ultima actualizacion: {""}
-                      <span>{formatDate(budget.updatedAt)}</span>
+                    <p className="font-mono text-sm text-secondary/60">
+                      Última actualización: {formatDate(budget.updatedAt)}
                     </p>
                   </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-x-6">
-                  <BudgetMenu budgetId={budget.id} />
+                  <div className="flex items-center gap-4">
+                    <BudgetMenu budgetId={budget.id} />
+                  </div>
                 </div>
                 <DeleteBudgetModal />
               </li>
             ))}
           </ul>
-        </>
+        </div>
       ) : (
-        <div>
-          <p>No hay presupuestos aun</p>
-          <Link href={"/admin/budgets/new"}>Comienza creando uno</Link>
+        /* Estado vacío */
+        <div className="cyber-box-enhanced p-8 text-center space-y-6 animate-pulse">
+          <p className="font-mono text-secondary/80 text-lg">! SISTEMA_VACÍO</p>
+          <Link
+            href="/admin/budgets/new"
+            className="retro-button inline-block text-accent"
+          >
+            INICIAR_PROTOCOLO_CREACIÓN
+          </Link>
         </div>
       )}
-    </>
+    </div>
   )
 }

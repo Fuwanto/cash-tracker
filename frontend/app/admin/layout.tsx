@@ -12,28 +12,35 @@ export default async function AdminLayout({
   const { user } = await verifySession()
 
   return (
-    <>
-      <header className="bg-purple-950 py-5">
-        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row justify-between items-center">
-          <div className="w-96">
-            <Link href={"/admin"}>
-              <Logo />
-            </Link>
-          </div>
+    <div className="min-h-screen flex flex-col bg-surface">
+      {/* Header con efecto de terminal */}
+      <header className="bg-surface/90 backdrop-blur-sm border-b-2 border-accent/30 shadow-neon-bottom py-6">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-6">
+          <Link
+            href="/admin"
+            className="neon-filter hover:scale-105 transition-transform"
+          >
+            <Logo />
+          </Link>
 
           <AdminMenu user={user} />
         </div>
       </header>
-      <section className="max-w-5xl mx-auto mt-20 p-3 py-10">
-        {children}
-      </section>
+
+      {/* Contenido principal */}
+      <main className="flex-1 max-w-6xl mx-auto px-4 py-10 space-y-10">
+        <div className="cyber-box-enhanced p-8 space-y-8">{children}</div>
+      </main>
+
       <ToastNotification />
 
-      <footer className="py-5">
-        <p className="text-center">
-          Todos los Derechos Reservados {new Date().getFullYear()}
+      {/* Footer estilo panel de sistema */}
+      <footer className="border-t-2 border-accent/30 mt-12 py-6">
+        <p className="text-center font-mono text-sm text-secondary/60 tracking-widest">
+          SISTEMA_FUWACASH © {new Date().getFullYear()} | TODOS LOS DERECHOS
+          RESERVADOS
         </p>
       </footer>
-    </>
+    </div>
   )
 }

@@ -3,5 +3,9 @@ export default function ErrorMessage({
 }: {
   children: React.ReactNode
 }) {
-  return <p>{children}</p>
+  return (
+    <div className="animate-glitch text-red-500 text-xs font-mono pt-2">
+      ! {children}
+    </div>
+  )
 }

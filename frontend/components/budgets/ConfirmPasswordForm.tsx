@@ -1,5 +1,4 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
-import { DialogTitle } from "@headlessui/react"
 import { useActionState, useEffect } from "react"
 import { deleteBudget } from "@/actions/delete-budget-action"
 import ErrorMessage from "../ui/ErrorMessage"
@@ -31,48 +30,54 @@ export default function ConfirmPasswordForm() {
   }
 
   return (
-    <>
-      <DialogTitle as="h3" className="font-black text-4xl text-purple-950 my-5">
-        Eliminar Presupuesto
-      </DialogTitle>
-      <p className="text-xl font-bold">
-        Ingresa tu Password para {""}
-        <span className="text-amber-500">eliminar el presupuesto {""}</span>
-      </p>
-      <p className="text-gray-600 text-sm">
-        (Un presupuesto eliminado y sus gastos no se pueden recuperar)
-      </p>
+    <div className="space-y-8">
+      {/* Encabezado */}
+      <div className="text-center space-y-4 border-b border-accent/30 pb-6">
+        <h3 className="text-3xl font-mono neon-text text-glitch">
+          ! ELIMINAR_PRESUPUESTO !
+        </h3>
+        <p className="text-secondary/80 font-mono">
+          Acción permanente - <span className="text-glitch">No reversible</span>
+        </p>
+      </div>
 
+      {/* Mensajes de error */}
       {state.errors.map((error, index) => (
         <ErrorMessage key={index}>{error}</ErrorMessage>
       ))}
 
-      <form className=" mt-14 space-y-5" noValidate action={dispatch}>
-        <div className="flex flex-col gap-5">
-          <label className="font-bold text-2xl">
-            Ingresa tu Password para eliminar
+      {/* Formulario */}
+      <form className="space-y-6" noValidate action={dispatch}>
+        <div className="space-y-4">
+          <label className="font-mono text-lg text-primary/80 blink">
+            [CONFIRMAR_CONTRASEÑA]
           </label>
           <input
             type="password"
-            placeholder="Password"
-            className="w-full border border-gray-300 p-3 rounded-lg"
+            placeholder="••••••••"
+            className="w-full p-3 bg-surface/20 border-2 border-accent/30 focus:border-primary 
+           outline-none font-mono placeholder:text-secondary/50 focus:shadow-neon text-center"
             name="password"
           />
         </div>
-        <div className="grid grid-cols-2 gap-5">
-          <input
-            type="submit"
-            value="Eliminar Presupuesto"
-            className="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-black cursor-pointer transition-colors"
-          />
+
+        {/* Botones de acción */}
+        <div className="grid grid-cols-2 gap-4">
           <button
-            className="bg-amber-500 hover:bg-amber-600 w-full p-3 rounded-lg text-white font-black cursor-pointer transition-colors"
+            type="submit"
+            className="retro-button bg-glitch/80 hover:bg-glitch text-white"
+          >
+            CONFIRMAR_ELIMINACIÓN
+          </button>
+          <button
+            type="button"
+            className="retro-button text-secondary hover:text-primary"
             onClick={closeModal}
           >
-            Cancelar
+            CANCELAR_OPERACIÓN
           </button>
         </div>
       </form>
-    </>
+    </div>
   )
 }

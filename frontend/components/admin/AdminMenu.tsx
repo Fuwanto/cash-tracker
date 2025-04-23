@@ -15,39 +15,50 @@ import { logout } from "@/actions/logout-user-action"
 export default function AdminMenu({ user }: { user: User }) {
   return (
     <Popover className="relative">
-      <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-amber-500">
-        <Bars3Icon className="w-8 h-8 text-white " />
+      <PopoverButton className="group inline-flex items-center gap-x-1 p-1 rounded-sm border-2 border-primary/50 hover:border-accent transition-all">
+        <Bars3Icon className="w-8 h-8 text-primary group-hover:text-accent transition-colors cursor-pointer" />
       </PopoverButton>
 
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-200"
-        enterFrom="opacity-0 translate-y-1"
+        enter="transition ease-out duration-300"
+        enterFrom="opacity-0 translate-y-2"
         enterTo="opacity-100 translate-y-0"
-        leave="transition ease-in duration-150"
+        leave="transition ease-in duration-200"
         leaveFrom="opacity-100 translate-y-0"
-        leaveTo="opacity-0 translate-y-1"
+        leaveTo="opacity-0 translate-y-2"
       >
-        <PopoverPanel className="absolute left-1/2 z-10 mt-5 flex w-screen lg:max-w-min -translate-x-1/2 lg:-translate-x-48">
-          <div className="w-full lg:w-56 shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5">
-            <p className="text-center">Hola: {user.name}</p>
+        <PopoverPanel className="absolute left-1/2 z-30 mt-4 flex w-screen lg:max-w-min -translate-x-1/2 lg:-translate-x-48 ">
+          <div className="cyber-box-enhanced w-full lg:w-64 p-4 space-y-4 font-mono text-sm">
+            {/* Encabezado del menú */}
+            <div className="text-center border-b border-accent/30 pb-2">
+              <p className="neon-text text-primary/80">USUARIO:</p>
+              <p className="text-accent truncate">{user.name}</p>
+            </div>
+
+            {/* Opciones del menú */}
             <Link
               href="/admin/profile/settings"
-              className="block p-2 hover:text-purple-950"
+              className="block p-2 hover:text-primary hover:bg-surface/50 transition-glow rounded-sm"
             >
-              Mi Perfil
+              [ MI_PERFIL ]
             </Link>
-            <Link href="/admin" className="block p-2 hover:text-purple-950">
-              Mis Presupuestos
+            <Link
+              href="/admin"
+              className="block p-2 hover:text-primary hover:bg-surface/50 transition-glow rounded-sm"
+            >
+              [ MIS_PRESUPUESTOS ]
             </Link>
+
+            {/* Botón de logout */}
             <button
-              className="block p-2 hover:text-purple-950"
+              className="w-full p-2 text-left hover:text-glitch hover:bg-surface/50 transition-glow rounded-sm cursor-pointer"
               type="button"
               onClick={async () => {
                 await logout()
               }}
             >
-              Cerrar Sesión
+              [ CERRAR_SESIÓN ]
             </button>
           </div>
         </PopoverPanel>

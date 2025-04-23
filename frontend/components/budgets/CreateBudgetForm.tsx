@@ -22,18 +22,20 @@ export default function CreateBudgetForm() {
   }, [state])
 
   return (
-    <form className="mt-10 space-y-3" noValidate action={dispatch}>
+    <form className="space-y-6" noValidate action={dispatch}>
+      {/* Mensajes de error */}
       {state.errors.map((error, index) => (
         <ErrorMessage key={index}>{error}</ErrorMessage>
       ))}
 
       <BudgetForm />
 
-      <input
+      <button
         type="submit"
-        className="bg-amber-500 w-full p-3 text-white uppercase font-bold hover:bg-amber-600 cursor-pointer transition-colors"
-        value="Crear Presupuesto"
-      />
+        className="retro-button w-full text-accent hover:text-primary"
+      >
+        INICIAR_CREACIÓN
+      </button>
     </form>
   )
 }

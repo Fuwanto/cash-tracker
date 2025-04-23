@@ -1,53 +1,66 @@
 "use client"
-import { useActionState, useEffect } from "react"
-import { toast } from "react-toastify"
+import { useActionState } from "react"
 import { authenticate } from "@/actions/authenticate-user-action"
+import ErrorMessage from "../ui/ErrorMessage"
 
 export default function LoginForm() {
   const [state, dispatch] = useActionState(authenticate, {
     errors: [],
   })
 
-  useEffect(() => {
-    if (state.errors) {
-      state.errors.forEach((error) => {
-        toast.error(error)
-      })
-    }
-  }, [state])
-
   return (
-    <>
-      <form className="mt-14 space-y-5" noValidate action={dispatch}>
-        <div className="flex flex-col gap-2">
-          <label className="font-bold text-2xl">Email</label>
-
-          <input
-            id="email"
-            type="email"
-            placeholder="Email de Registro"
-            className="w-full border border-gray-300 p-3 rounded-lg"
-            name="email"
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label className="font-bold text-2xl">Password</label>
-
-          <input
-            type="password"
-            placeholder="Password de Registro"
-            className="w-full border border-gray-300 p-3 rounded-lg"
-            name="password"
-          />
-        </div>
-
+    <form className="space-y-6" noValidate action={dispatch}>
+      {/* Campo Email */}
+      <div className="space-y-2">
+        <label
+          htmlFor="email"
+          className="font-mono text-sm text-primary/80 blink"
+        >
+          [USER_IDENTIFIER]
+        </label>
         <input
-          type="submit"
-          value="Iniciar Sesión"
-          className="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-black  text-xl cursor-pointer"
+          id="email"
+          type="email"
+          placeholder="user@fuwacash.io"
+          className="w-full p-3 bg-surface/20 border-2 border-accent/30 focus:border-primary 
+                   outline-none font-mono placeholder:text-gray-500 focus:shadow-neon"
+          name="email"
+          autoComplete="off"
         />
-      </form>
-    </>
+      </div>
+
+      {/* Campo Password */}
+      <div className="space-y-2">
+        <label
+          htmlFor="password"
+          className="font-mono text-sm text-primary/80 blink"
+        >
+          [ENCRYPTION_KEY]
+        </label>
+        <input
+          id="password"
+          type="password"
+          placeholder="••••••••"
+          className="w-full p-3 bg-surface/20 border-2 border-accent/30 focus:border-primary 
+                   outline-none font-mono placeholder:text-gray-500 focus:shadow-neon"
+          name="password"
+          autoComplete="off"
+        />
+      </div>
+
+      {/* Botón de Submit */}
+      <button
+        type="submit"
+        className="retro-button w-full text-primary font-mono hover:bg-surface/50 cursor-pointer"
+      >
+        INICIAR SESIÓN
+      </button>
+
+      {/* Mensaje de error */}
+
+      {state.errors.map((error, index) => (
+        <ErrorMessage key={index}>{error}</ErrorMessage>
+      ))}
+    </form>
   )
 }

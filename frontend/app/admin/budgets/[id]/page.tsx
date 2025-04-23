@@ -36,58 +36,65 @@ export default async function BudgetDetailPage({
   const percentage = +((totalSpent / +budget.amount) * 100).toFixed(2)
 
   return (
-    <>
-      <div className="flex justify-between items-center">
+    <div className="space-y-8">
+      {/* Encabezado */}
+      <div className="flex justify-between items-center cyber-box-enhanced p-6">
         <div>
-          <h1 className="font-black text-4xl text-purple-950">{budget.name}</h1>
-          <p className="text-xl font-bold">
-            Administra tus {""} <span className="text-amber-500">gastos</span>
+          <h1 className="text-4xl font-bold neon-text">{budget.name}</h1>
+          <p className="font-mono text-secondary/80 text-lg">
+            Sistema de gestión | <span className="text-accent">v2.4.1</span>
           </p>
         </div>
         <AddExpenseButton />
       </div>
 
-      {budget.expenses.length ? (
-        <>
-          <div className="grid grid-cols-1 md:grids-cols-2 mt-10">
-            <ProgressBar percentage={percentage} />
-            <div className="flex flex-col justify-center items-center md:items-start gap-5">
-              <Amount label="Presupuesto" amount={+budget.amount} />
-              <Amount label="Disponible" amount={totalAvailable} />
-              <Amount label="Gastado" amount={totalSpent} />
-            </div>
+      {/* Panel de estadísticas */}
+      <div className="cyber-box-enhanced p-8 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ProgressBar percentage={percentage} />
+          <div className="flex flex-col gap-4 font-mono">
+            <Amount label="Presupuesto Total" amount={+budget.amount} />
+            <Amount label="Disponible" amount={totalAvailable} />
+            <Amount label="Gastado" amount={totalSpent} />
           </div>
-          <h1>Gastos en este presupuesto:</h1>
-          <ul
-            role="list"
-            className="divide-y divide-gray-300 border shadow-lg mt-10 "
-          >
-            {budget.expenses.map((expense) => (
-              <li key={expense.id} className="flex justify-between gap-x-6 p-5">
-                <div className="flex min-w-0 gap-x-4">
-                  <div className="min-w-0 flex-auto space-y-2">
-                    <p className="text-2xl font-semibold text-gray-900">
+        </div>
+
+        {/* Listado de gastos */}
+        <div className="space-y-6">
+          <h2 className="neon-text text-xl font-mono blink">
+            REGISTRO_DE_GASTOS
+          </h2>
+          {budget.expenses.length ? (
+            <ul className="space-y-4">
+              {budget.expenses.map((expense) => (
+                <li
+                  key={expense.id}
+                  className="cyber-box-inner p-4 flex justify-between items-center hover:bg-surface/50"
+                >
+                  <div className="space-y-1">
+                    <p className="font-mono text-lg neon-text">
                       {expense.name}
                     </p>
-                    <p className="text-xl font-bold text-amber-500">
+                    <p className="text-primary text-2xl">
                       {formatCurrency(+expense.amount)}
                     </p>
-                    <p className="text-gray-500  text-sm">
-                      Agregado: {""}
-                      <span>{formatDate(expense.updatedAt)}</span>
+                    <p className="text-secondary/60 text-sm font-mono">
+                      {formatDate(expense.updatedAt)}
                     </p>
                   </div>
-                </div>
-                <ExpenseMenu expenseId={expense.id} />
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <p>No hay gastos aun</p>
-      )}
+                  <ExpenseMenu expenseId={expense.id} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="font-mono text-center text-secondary/80 animate-pulse">
+              ! SIN_REGISTROS_ACTIVOS !
+            </p>
+          )}
+        </div>
+      </div>
 
       <ModalContainer />
-    </>
+    </div>
   )
 }

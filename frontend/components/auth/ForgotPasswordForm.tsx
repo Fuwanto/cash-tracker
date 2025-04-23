@@ -3,6 +3,7 @@
 import { forgotPassword } from "@/actions/forgot-password-action"
 import { useActionState, useEffect } from "react"
 import { toast } from "react-toastify"
+import ErrorMessage from "../ui/ErrorMessage"
 
 export default function ForgotPasswordForm() {
   const [state, dispatch] = useActionState(forgotPassword, {
@@ -11,35 +12,37 @@ export default function ForgotPasswordForm() {
   })
 
   useEffect(() => {
-    if (state.errors) {
-      state.errors.forEach((error) => {
-        toast.error(error)
-      })
-    }
-
     if (state.success) {
       toast.success(state.success)
     }
   })
 
   return (
-    <form className=" mt-14 space-y-5" noValidate action={dispatch}>
-      <div className="flex flex-col gap-2 mb-10">
-        <label className="font-bold text-2xl">Email</label>
-
+    <form className="space-y-6" noValidate action={dispatch}>
+      <div className="space-y-4">
+        <label className="font-mono text-sm text-primary/80 blink">
+          [EMAIL_REGISTRADO]
+        </label>
         <input
           type="email"
-          placeholder="Email de Registro"
-          className="w-full border border-gray-300 p-3 rounded-lg"
+          placeholder="user@fuwacash.io"
+          className="w-full p-3 bg-surface/20 border-2 border-accent/30 
+                   focus:border-primary outline-none font-mono 
+                   placeholder:text-gray-500 focus:shadow-neon"
           name="email"
         />
       </div>
 
-      <input
+      <button
         type="submit"
-        value="Enviar Instrucciones"
-        className="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-black  text-xl cursor-pointer "
-      />
+        className="retro-button w-full text-primary font-mono hover:bg-surface/50 cursor-pointer"
+      >
+        ENVIAR_INSTRUCCIONES
+      </button>
+
+      {state.errors.map((error, index) => (
+        <ErrorMessage key={index}>{error}</ErrorMessage>
+      ))}
     </form>
   )
 }

@@ -1,17 +1,31 @@
+import Link from "next/link"
 import PasswordResetHandler from "@/components/auth/PasswordResetHandler"
 
 export default function NewPasswordPage() {
   return (
-    <>
-      <h1 className="font-black text-6xl text-purple-950">
-        Reestablecer Password
-      </h1>
-      <p className="text-3xl font-bold">
-        Ingresa el código que recibiste
-        <span className="text-amber-500"> por email</span>
-      </p>
+    <div className="cyber-box p-8 space-y-8 bg-surface/90 backdrop-blur-sm">
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold neon-text">
+          RESET<span className="text-primary">_OS</span>
+        </h1>
+        <p className="font-mono text-gray-400">
+          Ingresa el código de verificación recibido por{" "}
+          <span className="text-accent">email</span>
+        </p>
+      </div>
 
       <PasswordResetHandler />
-    </>
+
+      <div className="h-[2px] bg-accent/30 animate-pulse" />
+
+      <nav className="text-center font-mono text-sm">
+        <Link
+          href="/auth/login"
+          className="text-accent hover:text-primary transition-colors"
+        >
+          [ Volver al inicio de sesión ]
+        </Link>
+      </nav>
+    </div>
   )
 }

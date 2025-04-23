@@ -8,11 +8,12 @@ export default function AddExpenseButton() {
   return (
     <button
       type="button"
+      className="retro-button px-6 py-2 text-accent hover:text-primary"
       onClick={() =>
         router.push(location.pathname + "?addExpense=true&showModal=true")
       }
     >
-      Agregar Gasto
+      + NUEVO_GASTO
     </button>
   )
 }

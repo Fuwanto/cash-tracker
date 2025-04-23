@@ -3,5 +3,9 @@ export default function SuccessMessage({
 }: {
   children: React.ReactNode
 }) {
-  return <p>{children}</p>
+  return (
+    <div className="neon-text text-green-500 text-xs font-mono">
+      ✓ {children}
+    </div>
+  )
 }
