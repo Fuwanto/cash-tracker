@@ -17,7 +17,7 @@ export default function ExpenseForm({ expense }: ExpenseFormProps) {
           type="text"
           placeholder="GASTO_ENERGÍA_Q2"
           className="w-full p-3 bg-surface/20 border-2 border-accent/30 focus:border-primary 
-           outline-none font-mono placeholder:text-secondary/50 focus:shadow-neon text-center"
+           outline-none font-mono placeholder:text-secondary/50 focus:shadow-neon text-center sm:text-base md:text-lg lg:text-xl"
           defaultValue={expense?.name}
         />
       </div>
@@ -32,7 +32,7 @@ export default function ExpenseForm({ expense }: ExpenseFormProps) {
           type="number"
           placeholder="000000.00"
           className="w-full p-3 bg-surface/20 border-2 border-accent/30 focus:border-primary 
-           outline-none font-mono placeholder:text-secondary/50 focus:shadow-neon text-center"
+           outline-none font-mono placeholder:text-secondary/50 focus:shadow-neon text-center sm:text-base md:text-lg lg:text-xl"
           defaultValue={expense?.amount}
         />
       </div>

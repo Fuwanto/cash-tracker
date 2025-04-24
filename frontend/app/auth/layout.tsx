@@ -1,15 +1,15 @@
 import ToastNotification from "@/components/ui/ToastNotification"
 import Logo from "@/components/ui/Logo"
-import { verifySession } from "@/src/auth/dal"
 import { redirect } from "next/navigation"
+import getToken from "@/src/auth/token"
 
 export default async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const { user } = await verifySession()
-  if (user) {
+  const token = await getToken()
+  if (token) {
     redirect("/admin")
   }
   return (

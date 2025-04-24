@@ -59,12 +59,7 @@ router.post(
   ExpensesController.create
 )
 
-router.get(
-  "/:budgetId/expenses/:expenseId",
-  validateExpenseInput,
-  handleInputErrors,
-  ExpensesController.getById
-)
+router.get("/:budgetId/expenses/:expenseId", ExpensesController.getById)
 
 router.put("/:budgetId/expenses/:expenseId", ExpensesController.updateById)
 

@@ -19,7 +19,8 @@ export default function BudgetForm({ budget }: { budget?: Budget }) {
           className="w-full p-3 bg-surface/20 border-2 border-accent/30 rounded-sm
            font-mono placeholder:text-secondary/50
            focus:border-primary focus:shadow-neon
-           focus:outline-none transition-glow"
+           focus:outline-none transition-glow
+           sm:p-2 sm:text-sm"
           defaultValue={budget?.name}
         />
       </div>
@@ -40,7 +41,8 @@ export default function BudgetForm({ budget }: { budget?: Budget }) {
           className="w-full p-3 bg-surface/20 border-2 border-accent/30 rounded-sm
            font-mono placeholder:text-secondary/50
            focus:border-primary focus:shadow-neon
-           focus:outline-none transition-glow"
+           focus:outline-none transition-glow
+           sm:p-2 sm:text-sm"
           defaultValue={budget?.amount}
         />
       </div>

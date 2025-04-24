@@ -52,30 +52,30 @@ export default function DeleteBudgetModal() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="cyber-box-enhanced w-full max-w-2xl transform space-y-8 p-8 text-center align-middle shadow-neon-xl transition-all">
+              <DialogPanel className="cyber-box-enhanced w-full max-w-lg sm:max-w-xl md:max-w-2xl transform space-y-8 p-6 sm:p-8 text-center align-middle shadow-neon-xl transition-all">
                 {/* Encabezado del modal */}
                 <div className="space-y-4 border-b border-accent/30 pb-6">
-                  <h3 className="text-2xl font-mono neon-text text-glitch">
+                  <h3 className="text-xl sm:text-2xl font-mono neon-text text-glitch">
                     ! ADVERTENCIA_CRÍTICA !
                   </h3>
-                  <p className="text-sm text-secondary/80 font-mono">
+                  <p className="text-xs sm:text-sm text-secondary/80 font-mono">
                     Esta acción no puede ser revertida
                   </p>
                 </div>
 
                 {/* Contenido principal */}
                 <div className="space-y-6">
-                  <p className="font-mono text-lg text-primary/80">
+                  <p className="font-mono text-base sm:text-lg text-primary/80">
                     Confirmar eliminación del registro:
                   </p>
                   <ConfirmPasswordForm />
                 </div>
 
                 {/* Acciones */}
-                <div className="flex justify-center gap-4 mt-8">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
                   <button
                     type="button"
-                    className="retro-button text-sm px-6 py-2 hover:bg-surface/50"
+                    className="retro-button text-xs sm:text-sm px-4 sm:px-6 py-2 hover:bg-surface/50"
                     onClick={() => router.replace(`${pathname}?${hideModal}`)}
                   >
                     [ CANCELAR ]

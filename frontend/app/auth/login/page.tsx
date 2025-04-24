@@ -54,11 +54,6 @@ export default function LoginPage() {
           </Link>
         </nav>
       </div>
-
-      {/* Footer */}
-      <p className="text-center text-gray-600 text-xs font-mono mt-8">
-        © 2025 Fuwanto Systems | Todos los derechos reservados
-      </p>
     </div>
   )
 }

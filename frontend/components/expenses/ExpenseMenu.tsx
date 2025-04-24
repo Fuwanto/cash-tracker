@@ -1,6 +1,6 @@
 "use client"
 import { Fragment } from "react"
-import { EllipsisVerticalIcon } from "@heroicons/react/20/solid"
+import { Bars3Icon } from "@heroicons/react/24/outline"
 import {
   Menu,
   MenuButton,
@@ -21,7 +21,8 @@ export default function ExpenseMenu({
   return (
     <Menu as="div" className="relative">
       <MenuButton className="text-secondary/80 hover:text-primary transition-glow p-1">
-        <EllipsisVerticalIcon className="w-6 h-6" />
+        <span className="sr-only">Opciones</span>
+        <Bars3Icon className="w-6 h-6" />
       </MenuButton>
 
       <Transition

@@ -40,14 +40,14 @@ export default function EditExpenseForm({
   })
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 px-4 sm:px-8">
       <div className="text-center space-y-4 border-b border-accent/30 pb-6">
-        <h3 className="text-3xl font-mono neon-text tracking-widest">
+        <h3 className="text-xl sm:text-2xl font-mono neon-text tracking-widest">
           [ EDITAR_GASTO ]
         </h3>
-        <p className="text-secondary/80 font-mono">
+        <p className="text-secondary/80 font-mono text-sm sm:text-base">
           Protocolo de modificación |{" "}
-          <span className="text-accent">v2.4.1</span>
+          <span className="text-accent">v2.2.5</span>
         </p>
       </div>
 
@@ -56,22 +56,22 @@ export default function EditExpenseForm({
       ))}
 
       <form
-        className="cyber-box-enhanced p-8 space-y-6"
+        className="cyber-box-enhanced p-6 sm:p-8 space-y-6"
         noValidate
         action={dispatch}
       >
         <ExpenseForm expense={expense} />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
             type="submit"
-            className="retro-button text-accent hover:text-primary"
+            className="retro-button text-accent hover:text-primary text-sm"
           >
             ACTUALIZAR_REGISTRO
           </button>
           <button
             type="button"
-            className="retro-button text-secondary hover:text-primary"
+            className="retro-button text-secondary hover:text-primary text-sm"
             onClick={closeModal}
           >
             CANCELAR_OPERACIÓN

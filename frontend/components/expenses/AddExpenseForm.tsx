@@ -28,11 +28,11 @@ export default function AddExpenseForm({
     <div className="space-y-8">
       {/* Encabezado */}
       <div className="text-center space-y-4 border-b border-accent/30 pb-6">
-        <h3 className="text-3xl font-mono neon-text tracking-widest">
+        <h3 className="text-2xl md:text-3xl font-mono neon-text tracking-widest">
           [ NUEVO_GASTO ]
         </h3>
-        <p className="text-secondary/80 font-mono">
-          Protocolo de registro | <span className="text-accent">v2.4.1</span>
+        <p className="text-sm md:text-base text-secondary/80 font-mono">
+          Protocolo de registro | <span className="text-accent">v2.2.5</span>
         </p>
       </div>
 
@@ -43,14 +43,14 @@ export default function AddExpenseForm({
 
       {/* Formulario */}
       <form
-        className="cyber-box-enhanced p-8 space-y-6"
+        className="cyber-box-enhanced p-4 md:p-8 space-y-6"
         noValidate
         action={dispatch}
       >
         <ExpenseForm />
 
         {/* Botones de acción */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button
             type="submit"
             className="retro-button text-accent hover:text-primary"

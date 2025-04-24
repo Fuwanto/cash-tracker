@@ -8,7 +8,7 @@ import getToken from "./token"
 export const verifySession = cache(async () => {
   const token = await getToken()
   if (!token) {
-    redirect("/auth/login")
+    return null
   }
 
   const url = `${process.env.API_URL}/auth/user`
