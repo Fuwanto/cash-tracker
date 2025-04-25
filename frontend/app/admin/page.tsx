@@ -91,7 +91,7 @@ export default async function AdminPage() {
       ) : (
         /* Estado vacío */
         <div className="cyber-box-enhanced p-6 sm:p-8 lg:p-10 text-center space-y-4 sm:space-y-6 animate-pulse">
-          <p className="font-mono text-secondary/80 text-base sm:text-lg">
+          <p className="font-mono text-secondary/80 text-xs sm:text-sm">
             ! SISTEMA_VACÍO
           </p>
           <Link
