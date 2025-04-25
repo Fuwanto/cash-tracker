@@ -165,4 +165,28 @@ export class AuthController {
 
     return res.json("Password correcto")
   }
+
+  static updateUser = async (req: Request, res: Response) => {
+    const { name, email } = req.body
+
+    try {
+      const exitingUser = await User.findOne({ where: { email } })
+      console.log(exitingUser)
+
+      if (exitingUser && exitingUser.id !== req.user.id) {
+        const error = new Error("Ese email ya está registrado por otro usuario")
+        return res.status(409).json({ error: error.message })
+      }
+      await User.update(
+        { email, name },
+        {
+          where: { id: req.user.id },
+        }
+      )
+
+      return res.json("Perfil actualizado correctamente")
+    } catch (error) {
+      return res.status(500).json({ error: "Hubo un error" })
+    }
+  }
 }

@@ -37,13 +37,13 @@ export default async function RootLayout({
               <div className="flex gap-3 sm:gap-4 flex-wrap justify-center">
                 <Link
                   href="/auth/login"
-                  className="px-4 py-2 rounded-xl border border-accent text-accent hover:bg-accent hover:text-background transition-colors duration-200 text-sm font-semibold"
+                  className="px-4 py-2 rounded-xl border border-accent text-accent  hover:text-primary transition-colors"
                 >
                   Iniciar Sesión
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="px-4 py-2 rounded-xl border border-accent text-accent hover:bg-accent hover:text-background transition-colors duration-200 text-sm font-semibold"
+                  className="px-4 py-2 rounded-xl border border-accent text-accent hover:text-primary transition-colors"
                 >
                   Registrarse
                 </Link>

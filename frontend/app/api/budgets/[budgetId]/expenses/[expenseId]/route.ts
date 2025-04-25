@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"
 import { verifySession } from "@/src/auth/dal"
 import getToken from "@/src/auth/token"
 
@@ -5,7 +6,10 @@ export async function GET(
   request: Request,
   { params }: { params: { budgetId: string; expenseId: string } }
 ) {
-  await verifySession()
+  const session = await verifySession()
+  if (!session?.user) {
+    redirect("/auth/login")
+  }
   const { budgetId, expenseId } = await params
   const token = await getToken()
   const url = `${process.env.API_URL}/budgets/${budgetId}/expenses/${expenseId}`

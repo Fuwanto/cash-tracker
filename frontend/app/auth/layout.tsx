@@ -15,7 +15,7 @@ export default async function AuthLayout({
   return (
     <div className="min-h-screen grid lg:grid-cols-2 bg-surface">
       {/* Columna izquierda */}
-      <div className="hidden lg:flex items-center justify-center p-16 bg-gradient-to-br from-surface/95 to-primary/10">
+      <div className="hidden lg:flex items-center justify-center p-8 lg:p-20 bg-gradient-to-br from-surface/95 to-primary/10 rounded-lg">
         <div className="cyber-box p-12 space-y-12 text-center">
           <Logo />
           <div className="space-y-4">

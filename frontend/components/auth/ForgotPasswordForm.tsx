@@ -15,7 +15,7 @@ export default function ForgotPasswordForm() {
     if (state.success) {
       toast.success(state.success)
     }
-  })
+  }, [state])
 
   return (
     <form className="space-y-6" noValidate action={dispatch}>

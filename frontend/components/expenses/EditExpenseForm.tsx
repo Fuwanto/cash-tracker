@@ -37,7 +37,7 @@ export default function EditExpenseForm({
       toast.success(state.success)
       closeModal()
     }
-  })
+  }, [state])
 
   return (
     <div className="space-y-8 px-4 sm:px-8">
