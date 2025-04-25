@@ -49,7 +49,7 @@ export default async function AdminPage() {
         </div>
         <Link
           href="/admin/budgets/new"
-          className="retro-button px-6 sm:px-8 py-2 sm:py-3 text-accent hover:text-primary"
+          className="retro-button px-4 sm:px-6 py-1.5 sm:py-2 text-accent hover:text-primary"
         >
           + CREAR_PRESUPUESTO
         </Link>

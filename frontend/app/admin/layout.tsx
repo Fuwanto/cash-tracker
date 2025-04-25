@@ -9,7 +9,7 @@ export default async function AdminLayout({
 }>) {
   const token = await getToken()
   if (!token) {
-    redirect("/login")
+    redirect("/auth/login")
   }
   return (
     <div className="min-h-screen flex flex-col bg-surface">
