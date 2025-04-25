@@ -39,7 +39,7 @@ export default function DeleteExpenseForm({ closeModal }: DeleteExpenseForm) {
     if (!Number.isInteger(+budgetId!) || !Number.isInteger(+expenseId)) {
       closeModal()
     }
-  }, [])
+  }, [budgetId, expenseId])
 
   return (
     <div className="space-y-8 p-4 sm:p-6 md:p-8">

@@ -19,7 +19,7 @@ export default function CreateBudgetForm() {
       toast.success(state.success)
       router.push("/admin")
     }
-  }, [state])
+  }, [state, router])
 
   return (
     <form className="space-y-6" noValidate action={dispatch}>

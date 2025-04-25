@@ -3,10 +3,10 @@ import { Metadata } from "next"
 import EditBudgetForm from "@/components/budgets/EditBudgetForm"
 import { getBudgetById } from "@/src/services/budget"
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }): Promise<Metadata> {
   const { id } = await params
   const budget = await getBudgetById(id)
@@ -19,7 +19,7 @@ export async function generateMetaData({
 export default async function EditBudgetPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
   const { id } = await params
   const budget = await getBudgetById(id)

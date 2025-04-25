@@ -25,7 +25,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
         },
       })
     }
-  }, [state])
+  }, [state, router])
 
   return (
     <form className="space-y-6" noValidate action={dispatch}>

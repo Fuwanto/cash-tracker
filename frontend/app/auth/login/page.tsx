@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import LoginForm from "@/components/auth/LoginForm"
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
   title: "CashTracker - Iniciar Sesión",
   description:
     "Inicia sesión en CashTracker para gestionar y controlar tus finanzas de manera eficiente.",

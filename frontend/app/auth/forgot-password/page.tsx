@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm"
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
   title: "CashTracker - Olvidé mi Contraseña",
   description: "Restablece tu contraseña para CashTracker",
 }

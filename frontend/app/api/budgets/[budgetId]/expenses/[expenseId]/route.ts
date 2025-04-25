@@ -4,7 +4,7 @@ import getToken from "@/src/auth/token"
 
 export async function GET(
   request: Request,
-  { params }: { params: { budgetId: string; expenseId: string } }
+  { params }: { params: Promise<{ budgetId: string; expenseId: string }> }
 ) {
   const session = await verifySession()
   if (!session?.user) {

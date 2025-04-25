@@ -7,10 +7,10 @@ import ExpenseMenu from "@/components/expenses/ExpenseMenu"
 import Amount from "@/components/ui/Amount"
 import ProgressBar from "@/components/budgets/ProgressBar"
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }): Promise<Metadata> {
   const { id } = await params
   const budget = await getBudgetById(id)
@@ -23,7 +23,7 @@ export async function generateMetaData({
 export default async function BudgetDetailPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
   const { id } = await params
   const budget = await getBudgetById(id)
