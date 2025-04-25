@@ -98,7 +98,7 @@ export default async function AdminPage() {
             href="/admin/budgets/new"
             className="retro-button inline-block text-accent"
           >
-            INICIAR_PROTOCOLO_CREACIÓN
+            + CREAR_PRESUPUESTO
           </Link>
         </div>
       )}
