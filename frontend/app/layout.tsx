@@ -1,22 +1,22 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import "./globals.css"
-import Logo from "@/components/ui/Logo"
-import AdminMenu from "@/components/admin/AdminMenu"
-import { verifySession } from "@/src/auth/dal"
+import type { Metadata } from "next";
+import Link from "next/link";
+import "./globals.css";
+import Logo from "@/components/ui/Logo";
+import AdminMenu from "@/components/admin/AdminMenu";
+import { verifySession } from "@/src/auth/dal";
 
 export const metadata: Metadata = {
   title: "CashTracker",
   description: "Next-gen financial interface with retro-futuristic aesthetics",
-}
+};
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const session = await verifySession()
-  const user = session?.user
+  const session = await verifySession();
+  const user = session?.user;
 
   return (
     <html lang="en">
@@ -59,12 +59,22 @@ export default async function RootLayout({
 
         {/* Footer */}
         <footer className="border-t-2 border-accent/30 mt-12 py-6 px-4">
-          <p className="text-center font-mono text-xs sm:text-sm text-secondary/60 tracking-widest">
-            SISTEMA_FUWACASH © {new Date().getFullYear()} | TODOS LOS DERECHOS
-            RESERVADOS
-          </p>
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="font-mono text-xs sm:text-sm text-secondary/60 tracking-widest text-center sm:text-left">
+              SISTEMA_FUWACASH © {new Date().getFullYear()} | TODOS LOS DERECHOS
+              RESERVADOS
+            </p>
+            <a
+              href="https://github.com/Fuwanto/cash-tracker"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:text-primary neon-filter transition-colors text-xs sm:text-sm"
+            >
+              Ver en GitHub
+            </a>
+          </div>
         </footer>
       </body>
     </html>
-  )
+  );
 }
